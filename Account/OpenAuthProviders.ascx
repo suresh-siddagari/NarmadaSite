@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="OpenAuthProviders.ascx.cs" Inherits="Account_OpenAuthProviders" %>
-<!--<%@ Import Namespace="Microsoft.AspNet.Membership.OpenAuth" %>-->
+<!--<%@ Import Namespace="Microsoft.AspNet.Membership.OpenAuth" %>
 <fieldset class="open-auth-providers">
     <legend>Log in using another service</legend>
     
@@ -18,3 +18,4 @@
         </EmptyDataTemplate>
     </asp:ListView>
 </fieldset>
+-->
