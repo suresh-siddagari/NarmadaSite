@@ -4,15 +4,15 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.Membership.OpenAuth;
 using System.Web.Routing;
-using Microsoft.AspNet.FriendlyUrls;
+//using Microsoft.AspNet.FriendlyUrls;
 
 namespace GitHub_Local
 {
     public static class RouteConfig
     {
-        public static void RegisterRoutes(RouteCollection routes)
-        {
-            routes.EnableFriendlyUrls();
-        }
+        //public static void RegisterRoutes(RouteCollection routes)
+        //{
+        //    routes.EnableFriendlyUrls();
+        //}
     }
 }
