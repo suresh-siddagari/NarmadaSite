@@ -4,7 +4,7 @@ using System.Linq;
 
 using System.Web.UI.WebControls;
 
-using Microsoft.AspNet.Membership.OpenAuth;
+//using Microsoft.AspNet.Membership.OpenAuth;
 
 public partial class Account_Manage : System.Web.UI.Page
 {
@@ -22,67 +22,67 @@ public partial class Account_Manage : System.Web.UI.Page
 
     protected void Page_Load()
     {
-        if (!IsPostBack)
-        {
-            // Determine the sections to render
-            var hasLocalPassword = OpenAuth.HasLocalPassword(User.Identity.Name);
-            setPassword.Visible = !hasLocalPassword;
-            changePassword.Visible = hasLocalPassword;
+        //if (!IsPostBack)
+        //{
+        //    // Determine the sections to render
+        //    var hasLocalPassword = OpenAuth.HasLocalPassword(User.Identity.Name);
+        //    setPassword.Visible = !hasLocalPassword;
+        //    changePassword.Visible = hasLocalPassword;
 
-            CanRemoveExternalLogins = hasLocalPassword;
+        //    CanRemoveExternalLogins = hasLocalPassword;
 
-            // Render success message
-            var message = Request.QueryString["m"];
-            if (message != null)
-            {
-                // Strip the query string from action
-                Form.Action = ResolveUrl("~/Account/Manage");
+        //    // Render success message
+        //    var message = Request.QueryString["m"];
+        //    if (message != null)
+        //    {
+        //        // Strip the query string from action
+        //        Form.Action = ResolveUrl("~/Account/Manage");
 
-                SuccessMessage =
-                    message == "ChangePwdSuccess" ? "Your password has been changed."
-                    : message == "SetPwdSuccess" ? "Your password has been set."
-                    : message == "RemoveLoginSuccess" ? "The external login was removed."
-                    : String.Empty;
-                successMessage.Visible = !String.IsNullOrEmpty(SuccessMessage);
-            }
-        }
+        //        SuccessMessage =
+        //            message == "ChangePwdSuccess" ? "Your password has been changed."
+        //            : message == "SetPwdSuccess" ? "Your password has been set."
+        //            : message == "RemoveLoginSuccess" ? "The external login was removed."
+        //            : String.Empty;
+        //        successMessage.Visible = !String.IsNullOrEmpty(SuccessMessage);
+        //    }
+        //}
         
 
-        // Data-bind the list of external accounts
-        var accounts = OpenAuth.GetAccountsForUser(User.Identity.Name);
-        CanRemoveExternalLogins = CanRemoveExternalLogins || accounts.Count() > 1;
-        externalLoginsList.DataSource = accounts;
-        externalLoginsList.DataBind();
+        //// Data-bind the list of external accounts
+        //var accounts = OpenAuth.GetAccountsForUser(User.Identity.Name);
+        //CanRemoveExternalLogins = CanRemoveExternalLogins || accounts.Count() > 1;
+        //externalLoginsList.DataSource = accounts;
+        //externalLoginsList.DataBind();
         
     }
 
     protected void setPassword_Click(object sender, EventArgs e)
     {
-        if (IsValid)
-        {
-            var result = OpenAuth.AddLocalPassword(User.Identity.Name, password.Text);
-            if (result.IsSuccessful)
-            {
-                Response.Redirect("~/Account/Manage?m=SetPwdSuccess");
-            }
-            else
-            {
+        //if (IsValid)
+        //{
+        //    var result = OpenAuth.AddLocalPassword(User.Identity.Name, password.Text);
+        //    if (result.IsSuccessful)
+        //    {
+        //        Response.Redirect("~/Account/Manage?m=SetPwdSuccess");
+        //    }
+        //    else
+        //    {
                 
-                newPasswordMessage.Text = result.ErrorMessage;
+        //        newPasswordMessage.Text = result.ErrorMessage;
                 
-            }
-        }
+        //    }
+        //}
     }
 
     
     protected void externalLoginsList_ItemDeleting(object sender, ListViewDeleteEventArgs e)
     {
-        var providerName = (string)e.Keys["ProviderName"];
-        var providerUserId = (string)e.Keys["ProviderUserId"];
-        var m = OpenAuth.DeleteAccount(User.Identity.Name, providerName, providerUserId)
-            ? "?m=RemoveLoginSuccess"
-            : String.Empty;
-        Response.Redirect("~/Account/Manage" + m);
+        //var providerName = (string)e.Keys["ProviderName"];
+        //var providerUserId = (string)e.Keys["ProviderUserId"];
+        //var m = OpenAuth.DeleteAccount(User.Identity.Name, providerName, providerUserId)
+        //    ? "?m=RemoveLoginSuccess"
+        //    : String.Empty;
+        //Response.Redirect("~/Account/Manage" + m);
     }
 
     protected T Item<T>() where T : class
